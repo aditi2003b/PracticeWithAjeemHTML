@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = 'PracticeAJ'
-    CONTAINER_NAME = 'PracticeAJAD'
+    IMAGE_NAME = 'practiceaj'        // ✅ lowercase
+    CONTAINER_NAME = 'practiceajad'  // ✅ lowercase
   }
 
   stages {
@@ -24,10 +24,7 @@ pipeline {
     stage('Run Container') {
       steps {
         script {
-          // Stop and remove old container if it exists
           sh "docker rm -f $CONTAINER_NAME || true"
-
-          // Run new container on port 8089 mapped to container's 80
           sh "docker run -dit --name $CONTAINER_NAME -p 8089:80 $IMAGE_NAME"
         }
       }
